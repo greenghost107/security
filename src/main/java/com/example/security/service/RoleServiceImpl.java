@@ -10,7 +10,6 @@ import com.example.security.model.User;
 import com.example.security.repository.UserRepository;
 
 
-
 @Service
 public class RoleServiceImpl implements RoleService{
 

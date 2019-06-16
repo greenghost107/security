@@ -10,32 +10,43 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = { "com.example.security.controller" })
+@ComponentScan(basePackages = { "com.example.security.web" })
 public class WebMvcConfig implements WebMvcConfigurer {
 	
 	@Bean
 	public InternalResourceViewResolver resolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-//		resolver.setViewClass(JstlView.class);
-		resolver.setPrefix("/WEB-INF/");
+		// resolver.setViewClass(JstlView.class);
+		resolver.setPrefix("/WEB-INF/templates/");
 		resolver.setSuffix(".jsp");
 		return resolver;
 	}
 	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry
-          .addResourceHandler("/resources/**")
-          .addResourceLocations("/resources/"); 
-    }
+		registry
+				.addResourceHandler("/resources/**")
+				.addResourceLocations("/resources/");
+	}
 	
 //	@Bean
-//    public MultipartResolver multipartResolver() {
-//        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
-//        multipartResolver.setMaxUploadSize(5242880);
-//        return multipartResolver;
-//    }
+//	public ClassLoaderTemplateResolver templateResolver() {
+//		ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
+//		templateResolver.setPrefix("/templates/");
+//		templateResolver.setCacheable(false);
+//		templateResolver.setSuffix(".jsp");
+//		
+//		return templateResolver;
+//	}
+	
+	// @Bean
+	// public MultipartResolver multipartResolver() {
+	// CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+	// multipartResolver.setMaxUploadSize(5242880);
+	// return multipartResolver;
+	// }
 }
